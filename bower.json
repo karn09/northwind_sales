@@ -1,0 +1,23 @@
+{
+  "name": "northwind_sales",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "John Nieves <karn09@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3",
+    "angular-material": "^1.0.6"
+  }
+}
