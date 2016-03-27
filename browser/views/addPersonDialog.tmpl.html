@@ -11,20 +11,20 @@
       </div>
     </md-input-container>
     <!-- select regions -->
-    <md-input-container class="md-block" layout-xs="column" layout="row" layout="center center">
-
-      <md-checkbox md-no-ink ng-click="toggle(selected)" aria-label="Region_one">
-        Region 1
+    <md-input-container ng-repeat="region in regions" class="md-block" layout-xs="column" layout="row" layout="center center">
+      {{regions}}
+      <md-checkbox md-no-ink ng-click="toggle(region)" aria-label="{{region}}">
+        {{region}}
       </md-checkbox>
-      <md-checkbox md-no-ink ng-model="person.region.two" aria-label="Region_two">
-        Region 2
+      <!-- <md-checkbox md-no-ink ng-model="person.region.two" aria-label="Region_two">
+        East
       </md-checkbox>
       <md-checkbox md-no-ink ng-model="person.region.three" aria-label="Region_three">
-        Region 3
+        South
       </md-checkbox>
       <md-checkbox md-no-ink ng-model="person.region.four" aria-label="Region_four">
-        Region 4
-      </md-checkbox>
+        West
+      </md-checkbox> -->
 
     </md-input-container>
     {{person}}

@@ -1,4 +1,5 @@
 salesApp.controller('addPersonCtrl', function($scope, $mdDialog) {
+
   $scope.openFromBottom = function(ev) {
     $mdDialog.show({
       controller: DialogController,
@@ -10,6 +11,7 @@ salesApp.controller('addPersonCtrl', function($scope, $mdDialog) {
   };
   $scope.person = {};
   $scope.person.regions = [];
+  $scope.regions = ['North', 'East', 'South', 'West'];
 });
 
 function DialogController($scope, $mdDialog) {
