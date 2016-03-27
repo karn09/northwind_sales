@@ -9,6 +9,7 @@ salesApp.controller('addPersonCtrl', function($scope, $mdDialog) {
     });
   };
   $scope.person = {};
+  $scope.person.regions = [];
 });
 
 function DialogController($scope, $mdDialog) {
@@ -21,5 +22,8 @@ function DialogController($scope, $mdDialog) {
   };
   $scope.answer = function(answer) {
     $mdDialog.hide(answer);
+  };
+  $scope.toggle = function(item) {
+    console.log(item);
   };
 }

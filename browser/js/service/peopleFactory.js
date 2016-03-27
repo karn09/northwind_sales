@@ -11,5 +11,11 @@ salesApp.factory('peopleFactory', function($http) {
     });
   };
 
+  peopleObj.addPerson = function(personObj) {
+    return $http.post('/api/people', personObj)
+      .then(function(res) {
+        return res.data;
+      });
+  };
   return peopleObj;
 });
