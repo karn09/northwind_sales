@@ -6,12 +6,12 @@ module.exports = router;
 router.get('/', function(req, res) {
   console.log(db.People.findAll());
   db.People.findAll()
-  .then(function(people) {
-    res.json(people);
-  })
-  .catch(function(err) {
-    res.json(err);
-  });
+    .then(function(people) {
+      res.json(people);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
 });
 
 router.post('/', function(req, res) {
@@ -25,6 +25,21 @@ router.post('/', function(req, res) {
     });
 });
 
-router.put('/', function(req, res) {
+// TODO create route to update regions on person record
+router.put('/:id', function(req, res) {
 
+});
+
+router.delete('/:id', function(req, res) {
+  db.People.destroy({
+    where: {
+      id: Number(req.params.id)
+    }
+  })
+  .then(function(msg) {
+    res.json(msg);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
 });

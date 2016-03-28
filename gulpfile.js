@@ -7,6 +7,8 @@ var gulpPlugins = require('gulp-load-plugins')({
   replaceString: /\bgulp[\-.]/
 });
 
+// TODO browserify doesn't support bower plugins, need to override in order to get below to work.
+
 var paths = {
   root: 'browser/',
   src: 'browser/js/',

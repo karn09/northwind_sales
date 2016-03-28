@@ -9,7 +9,7 @@
 
   </head>
   <!-- declare ng-app salesApp -->
-  <body layout="row" ng-app='salesApp'>
+  <body ng-app='salesApp'>
     <div layout="column" layout-fill>
 
       <md-toolbar>
@@ -30,67 +30,57 @@
           <span>Modules</span>
           <!--  TODO on menu btn click, load module to main content window -->
         </md-toolbar>
-            <md-menu-item>
-              <md-button ng-click="">Sales Team</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="">Regions</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="">Products</md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ng-click="">Item Priority</md-button>
-            </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">Sales Team</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">Regions</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">Products</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="">Item Priority</md-button>
+        </md-menu-item>
       </md-sidenav>
 
       <!-- main content cards, list of people added -->
-      <md-content layout-fill class="md-padding" layout-xs="row" layout="row" layout-align="center start">
-
-        <div flex-xs flex-gt-xs="100" layout="row" layout-xs="column" ng-controller="personCtrl">
+      <md-content layout-fill class="md-padding" layout-xs="column" layout="column" layout-align-xs="start center" layout-align-lg="start start">
+        <!-- flex-xs flex-gt-xs="100" layout="row" layout-xs="column"  -->
+        <div layout layout-xs="column" flex-xs="50" ng-controller="personCtrl">
           <!--  start of card repeating -->
           <!-- TODO btn to delete card -->
-          <md-card>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">John Nieves</span>
-                <span class="md-subhead">Small</span>
-              </md-card-title-text>
-              <md-card-title-media>
-                <div class="md-media-sm card-media"></div>
-              </md-card-title-media>
-            </md-card-title>
-            <!--  repeat over available regions -->
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-raised">Action 1</md-button>
-              <md-button class="md-raised">Action 2</md-button>
-            </md-card-actions>
-          </md-card>
+          <div ng-repeat="person in people">
+            <md-card>
+              <section layout="row" layout-align="end start">
+                <!--  HACK: why doesn't removeBtn class work?? -->
+                <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">{{person.name}}</span>
+                  </md-card-title-text>
+                  <!-- {{person.selected}} -->
+                </md-card-title>
+                <md-button ng-click="delete(person)" class="md-fab md-warn md-mini removeBtn" aria-label="Delete">
+                  <md-icon md-svg-src="/public/img/icons/delete.svg"></md-icon>
+                </md-button>
+              </section>
+              <!--  repeat over available regions -->
+              <!--  FIXME move inline style to stylesheet -->
+              <div style="flex-wrap: wrap; justify-content: space-between;" layout="row" layout-align="start start">
+                <md-card-actions ng-repeat="region in regions">
+                  <md-checkbox ng-model="truthy" ng-checked="true">{{region}}</md-checkbox>
 
-          <md-card>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">John Nieves</span>
-                <span class="md-subhead">Small</span>
-              </md-card-title-text>
-              <md-card-title-media>
-                <div class="md-media-sm card-media"></div>
-              </md-card-title-media>
-            </md-card-title>
-            <!--  repeat over available regions -->
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="md-raised">Action 1</md-button>
-              <md-button class="md-raised">Action 2</md-button>
-            </md-card-actions>
-          </md-card>
-
+                </md-card-actions>
+                <!-- {{regions.selected}} -->
+              </div>
+            </md-card>
+          </div>
         </div>
 
-
       </md-content>
-      <!--  TODO figure out a way to get this to float slightly higher up.-->
       <!-- add sales person btn -->
-      <section layout="row" layout-align="end end" ng-controller="addPersonCtrl">
+      <section layout="row" layout-align="end start" ng-controller="addPersonCtrl">
+        <!--  TODO figure out a way to get this to float slightly higher up. and stay static on screen-->
         <md-button class="md-fab" aria-label="Add Item" ng-click="openFromBottom($event)">
           <md-icon md-svg-src="/public/img/icons/add.svg"></md-icon>
         </md-button>
@@ -110,8 +100,8 @@
   <script src="/public/js/module.js" charset="utf-8"></script>
   <script src="/public/js/controller/sidenav.js" charset="utf-8"></script>
   <script src="/public/js/service/peopleFactory.js" charset="utf-8"></script>
+  <script src="/public/js/service/regionFactory.js" charset="utf-8"></script>
   <script src="/public/js/controller/salesPeople.js" charset="utf-8"></script>
   <script src="/public/js/controller/addPerson.js" charset="utf-8"></script>
-
 
 </html>

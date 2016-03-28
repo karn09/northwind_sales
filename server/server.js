@@ -1,8 +1,8 @@
 var server = require('http').createServer();
 var app = require('./app.js');
 var db = require('./db');
-
-db.sequelize.sync({force: true})
+// set {force: true} on sync if needed to generate tables from start
+db.sequelize.sync()
   .then(function(db) {
     server.on('request', app);
     server.listen(3000, function() {
