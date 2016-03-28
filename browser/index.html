@@ -45,9 +45,9 @@
       </md-sidenav>
 
       <!-- main content cards, list of people added -->
-      <md-content layout-fill class="md-padding" layout-xs="column" layout="column" layout-align-xs="start center" layout-align-lg="start start">
+      <md-content layout-fill class="md-padding" layout-xs="column" layout="row" layout-align-xs="start center" layout-align-lg="start start">
         <!-- flex-xs flex-gt-xs="100" layout="row" layout-xs="column"  -->
-        <div layout layout-xs="column" flex-xs="50" ng-controller="personCtrl">
+        <div layout layout-xs="column" layout flex-xs="50" ng-controller="personCtrl">
           <!--  start of card repeating -->
           <!-- TODO btn to delete card -->
           <div ng-repeat="person in people">
@@ -67,11 +67,9 @@
               <!--  repeat over available regions -->
               <!--  FIXME move inline style to stylesheet -->
               <div style="flex-wrap: wrap; justify-content: space-between;" layout="row" layout-align="start start">
-                <md-card-actions ng-repeat="region in regions">
-                  <md-checkbox ng-model="truthy" ng-checked="true">{{region}}</md-checkbox>
-
+                <md-card-actions ng-repeat="(key, val) in person.selected">
+                  <md-checkbox ng-disabled="person.selected[key] === false && person.regions.length === 3" ng-model="person.selected[key]" ng-change="toggle(person.id, person.selected)">{{key}}</md-checkbox>
                 </md-card-actions>
-                <!-- {{regions.selected}} -->
               </div>
             </md-card>
           </div>
