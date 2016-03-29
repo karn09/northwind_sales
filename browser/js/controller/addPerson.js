@@ -9,7 +9,7 @@ salesApp.controller('addPersonCtrl', function($scope, $rootScope, $mdDialog) {
       clickOutsideToClose: true
     })
     .finally(function(info) {
-      console.log($scope);
+      console.log($scope.person);
     });
   };
 });
@@ -36,8 +36,8 @@ function DialogController($scope, $rootScope, $mdDialog, regionFactory, peopleFa
   $scope.save = function(info) {
     peopleFactory.addPerson(info)
       .then(function(res) {
-        console.log(res)
-        $scope.$emit('personAdded', info)
+        console.log(res);
+        $scope.$emit('personAdded', info);
         $mdDialog.hide();
       })
       .catch(function(err) {

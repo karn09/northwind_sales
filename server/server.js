@@ -4,7 +4,7 @@ var db = require('./db');
 // set {force: true} on sync if needed to generate tables from start
 // TODO: database initialization script with config options - THIS WILL FAIL
 // unless database is created in postgres:
-// CREATE DATABASE "nw-sales" -u postgres; 
+// CREATE DATABASE "nw-sales" -u postgres;
 db.sequelize.sync()
   .then(function(db) {
     server.on('request', app);

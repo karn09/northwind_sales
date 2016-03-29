@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
-var dbPass = '';
-var dbHost = '@localhost/nw-sales';
+var dbPass = 'dvorak12';
+var dbHost = '@localhost:5433/nw-sales';
 var sequelize = new Sequelize('postgres://postgres:' + dbPass + dbHost);
 var db = {};
 

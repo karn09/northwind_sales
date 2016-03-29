@@ -45,9 +45,9 @@
       </md-sidenav>
 
       <!-- main content cards, list of people added -->
-      <md-content layout-fill class="md-padding" layout-xs="column" layout="row" layout-align-xs="start center" layout-align-lg="start start">
+      <md-content layout-xs="column" flex="auto" layout="row" layout-align-xs="start center">
         <!-- flex-xs flex-gt-xs="100" layout="row" layout-xs="column"  -->
-        <div layout layout-xs="column" layout flex-xs="50" ng-controller="personCtrl">
+        <div layout-wrap layout="row" layout-align="space-around start" layout-align-xs="center start" ng-controller="personCtrl">
           <!--  start of card repeating -->
           <!-- TODO btn to delete card -->
           <div ng-repeat="person in people">
