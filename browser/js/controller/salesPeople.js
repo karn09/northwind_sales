@@ -1,22 +1,32 @@
 salesApp.controller('personCtrl', function($scope, $rootScope, peopleFactory, regionFactory) {
 
-  peopleFactory.getAll()
+  function init() {
+    peopleFactory.getAll()
     .then(function(res) {
       $scope.people = res;
     });
-  $scope.$on('personAdded', function(event, args) {
-    console.log(event, args)
-  })
+  }
+
+  $scope.$on('addedPerson', function(event, data) {
+    init();
+  });
+
+  $scope.checkStatus = function(person) {
+    return person.regions.length;
+    // init();
+  };
+
   $scope.toggle = function(id, values) {
     var _selected = [];
     for (var key in values) {
       if (values[key] === true) {
-        _selected.push(key);     
+        _selected.push(key);
       }
     }
     peopleFactory.updateRegions(id, _selected)
       .then(function(msg) {
-        console.log(msg)
+        // console.log(msg);
+        init();  // HACK force view to refresh.
       });
   };
 
@@ -32,12 +42,5 @@ salesApp.controller('personCtrl', function($scope, $rootScope, peopleFactory, re
         console.log(err);
       });
   };
+  init();
 });
-
-function toObject(arr) {
-  var rv = {};
-  for (var i = 0; i < arr.length; ++i) {
-    rv[arr[i]] = arr[i];
-  }
-  return rv;
-}

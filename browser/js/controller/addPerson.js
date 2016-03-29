@@ -2,19 +2,20 @@ salesApp.controller('addPersonCtrl', function($scope, $rootScope, $mdDialog) {
   $scope.openFromBottom = function(ev) {
     $mdDialog.show({
       controller: DialogController,
-      scope: $rootScope,
+      scope: $scope,
+      preserveScope: true,
       templateUrl: '/public/views/addPersonDialog.tmpl.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true
     })
-    .finally(function(info) {
-      console.log($scope.person);
+    .finally(function() {
+      $rootScope.$broadcast('addedPerson', $scope.newPerson);
     });
   };
 });
 
-function DialogController($scope, $rootScope, $mdDialog, regionFactory, peopleFactory) {
+function DialogController($scope, $mdDialog, regionFactory, peopleFactory) {
 
   $scope.person = {};
   $scope.person.regions = [];
@@ -36,8 +37,7 @@ function DialogController($scope, $rootScope, $mdDialog, regionFactory, peopleFa
   $scope.save = function(info) {
     peopleFactory.addPerson(info)
       .then(function(res) {
-        console.log(res);
-        $scope.$emit('personAdded', info);
+        $scope.newPerson = res;
         $mdDialog.hide();
       })
       .catch(function(err) {

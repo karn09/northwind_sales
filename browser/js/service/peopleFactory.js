@@ -20,11 +20,10 @@ salesApp.factory('peopleFactory', function($http, regionFactory) {
           _regions.forEach(function(region) {
             if (person.regions.includes(region)) {
               person.selected[region] = true;
-            }
-            else {
+            } else {
               person.selected[region] = false;
             }
-          })
+          });
         });
         return _people;
       })
@@ -55,7 +54,6 @@ salesApp.factory('peopleFactory', function($http, regionFactory) {
       });
   };
 
-
   peopleObj.updateRegions = function(id, regions) {
     return $http.put('/api/people/' + id, regions)
       .then(function(res) {
@@ -63,7 +61,7 @@ salesApp.factory('peopleFactory', function($http, regionFactory) {
       })
       .catch(function(err) {
         return err;
-      })
+      });
   };
   return peopleObj;
 });

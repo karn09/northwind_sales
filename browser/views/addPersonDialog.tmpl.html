@@ -27,7 +27,7 @@
     <section layout="row" layout-sm="row" layout-align="center center" layout-wrap>
       <md-button class="md-warn" ng-click="cancel()">Cancel</md-button>
       <!--  disable save button if length is 4 -->
-      <md-button ng-disabled="person.regions.length === 4 || !person.name" md-primary ng-click="save(person)">Save</md-button>
+      <md-button ng-disabled="person.regions.length === 4 || !person.name || person.regions.length === 0" md-primary ng-click="save(person)">Save</md-button>
     </section>
   </form>
 </md-content>

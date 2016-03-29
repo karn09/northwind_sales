@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/vendor/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="/css/main.css">
     <meta name="viewport" content="initial-scale=1"/>
     <title>Northwind Sales</title>
 
@@ -51,7 +52,7 @@
           <!--  start of card repeating -->
           <!-- TODO btn to delete card -->
           <div ng-repeat="person in people">
-            <md-card>
+            <md-card ng-class="{'md-hue-1': checkStatus(person) === 3}">
               <section layout="row" layout-align="end start">
                 <!--  HACK: why doesn't removeBtn class work?? -->
                 <md-card-title>
@@ -60,7 +61,7 @@
                   </md-card-title-text>
                   <!-- {{person.selected}} -->
                 </md-card-title>
-                <md-button ng-click="delete(person)" class="md-fab md-warn md-mini removeBtn" aria-label="Delete">
+                <md-button ng-disabled="checkStatus(person) > 0" ng-click="delete(person)" class="md-fab md-warn md-mini removeBtn" aria-label="Delete">
                   <md-icon md-svg-src="/public/img/icons/delete.svg"></md-icon>
                 </md-button>
               </section>
@@ -68,7 +69,8 @@
               <!--  FIXME move inline style to stylesheet -->
               <div style="flex-wrap: wrap; justify-content: space-between;" layout="row" layout-align="start start">
                 <md-card-actions ng-repeat="(key, val) in person.selected">
-                  <md-checkbox ng-disabled="person.selected[key] === false && person.regions.length === 3" ng-model="person.selected[key]" ng-change="toggle(person.id, person.selected)">{{key}}</md-checkbox>
+                  <!-- FIXME  -->
+                  <md-checkbox ng-disabled="!person.selected[key] && checkStatus(person) === 3" ng-model="person.selected[key]" ng-change="toggle(person.id, person.selected)">{{key}}</md-checkbox>
                 </md-card-actions>
               </div>
             </md-card>

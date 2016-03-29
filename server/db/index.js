@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var dbPass = 'dvorak12';
+var dbPass = '';
 var dbHost = '@localhost:5433/nw-sales';
 var sequelize = new Sequelize('postgres://postgres:' + dbPass + dbHost);
 var db = {};
@@ -31,9 +31,9 @@ var People = sequelize.define('people', {
         // and validate from this table instead
         var regions = ['North', 'East', 'South', 'West'];
         var values = (Array.isArray(value)) ? value : [value];
-        if (values.length === 0) {
-          throw new Error('You must specify a region.');
-        }
+        // if (values.length === 0) {
+        //   throw new Error('You must specify a region.');
+        // }
         if (values.length > 3) {
           throw new Error('Cannot select more than three regions');
         }
