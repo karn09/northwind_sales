@@ -1,0 +1,6 @@
+- why have both a people or person factory
+- i know you've gone well beyond what you had to do-- but I think you've overcomplicated it quite a bit
+- if you find yourself resorting to hacks and using rootscope, you're more than likely doing this wrong
+- you could have accomplished this with 1 controller and 1 factory and it would be much more maintainable
+- i appreciate you bringing in other technologies-- but if something I'm not familiar with, then I'm not going to be able to give you much feedback on it
+- sorry about that.

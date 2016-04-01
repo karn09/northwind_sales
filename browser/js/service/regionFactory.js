@@ -1,3 +1,4 @@
+//why use global variables-- do you need to
 salesApp.factory('regionFactory', function($q) {
   var regionObj = {};
   // TODO grab available regions from server
@@ -6,7 +7,7 @@ salesApp.factory('regionFactory', function($q) {
 
   regionObj.getRegions = function() {
     // http://www.codelord.net/2015/09/24/$q-dot-defer-youre-doing-it-wrong/
-    return $q.when(_regions);
+    return $q.when(_regions);//is this necessary - worry about it, when you have to worry about it
   };
 
   // FIXME do not use this, will not validate on server

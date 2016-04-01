@@ -4,6 +4,7 @@ var dbHost = '@localhost:5433/nw-sales';
 var sequelize = new Sequelize('postgres://postgres:' + dbPass + dbHost);
 var db = {};
 
+//isn't this a person?
 var People = sequelize.define('people', {
   name: {
     type: Sequelize.STRING,
